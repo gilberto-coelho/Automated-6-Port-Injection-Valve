@@ -2,367 +2,236 @@
 
 A custom automation system developed to convert a **manual 6-port laboratory injection valve** into an electronically controlled device using an **ESP8266 ESP-01, servo motor, 3D-printed gears, and a Wi-Fi web interface**.
 
-Manual injection valves are widely used in analytical laboratories to switch between sample loading and injection positions. Although reliable, manual operation can limit automation and integration with other laboratory instruments.
+The system allows valve positioning through a smartphone or computer browser, as well as automatic switching between two calibrated positions using an external electrical trigger.
 
-To overcome this limitation, I developed a compact system combining **3D CAD modeling, 3D printing, mechanical transmission, electronic circuit design, voltage regulation, and embedded programming**.
+The complete **3D mechanical design, electronic circuit, assembly, and ESP8266 firmware** were developed and implemented by me.
 
-The valve can be operated through a web browser or automatically switched between two calibrated positions using an external electrical trigger.
-
-The entire mechanical design, electronic integration, assembly, and ESP8266 firmware were developed and implemented by me.
-
-**Development:** 2024
+**Development:** August 2024  
 **Microcontroller:** ESP8266 ESP-01  
 **Programming:** Arduino C/C++, HTML, CSS  
 **Application:** Laboratory instrumentation and sample injection automation
 
 **Complete automated injection valve:**
 
-[photo of the assembled system here]
+<img width="1848" height="634" alt="Automated 6-port injection valve" src="https://github.com/user-attachments/assets/a9490f3d-3184-49ca-82a4-dedbef9491e0" />
 
 <br>
-<br>
-
-## Overview
-
-The project was designed to automate a conventional manual 6-port injection valve while preserving its original operating mechanism.
-
-The main features include:
-
-- Servo-driven valve rotation through custom 3D-printed gears
-- Adjustable mechanical coupling for safe gear alignment
-- Compact ESP8266 ESP-01 control system
-- Wi-Fi access point with browser-based configuration
-- Adjustable OPEN and CLOSE servo positions
-- Non-volatile storage of calibrated positions using EEPROM
-- Manual testing and positioning through the web interface
-- Automatic operation using an external ~24 V trigger signal
-- Custom 12 V, 5 V, and 3.3 V power distribution circuit
-- 3D-printed valve support, gears, and electronics enclosure
-
-The system was designed to operate without requiring a computer or external Wi-Fi network during normal use.
-
 <br>
 
 ## 3D Mechanical Design and Printing
 
-A major part of the project involved designing a **custom mechanical assembly** to connect a servo motor to the original manual injection valve.
+The mechanical system consists of a custom **3D-printed valve holder, servo support, transmission gears, and electronics enclosure**.
 
-The assembly consists of:
+Since the manual valve rotates only approximately **60°**, exceeding its mechanical limits could damage the valve. To prevent this during calibration, I designed a **movable servo support that allows the gears to be engaged or disengaged**, enabling independent adjustment of the servo and valve positions before connecting them.
 
-- **Valve holder:** supports and positions the manual injection valve.
-- **Servo mounting structure:** maintains the motor in alignment with the valve.
-- **Custom gears:** transmit the servo rotation to the valve mechanism.
-- **Adjustable gear engagement mechanism:** allows the gears to be connected or disconnected during calibration.
-- **Electronics enclosure:** houses and protects the control circuit.
+The servo support is secured to the base using an **M4 × 20 mm screw and nut**, as shown in the images below.
 
-All components were designed using 3D CAD software and fabricated through 3D printing.
+### Gear Assembly
 
-### Adjustable Gear Engagement
+The gears were designed for direct integration with the servo and injection valve:
 
-One of the most important mechanical design requirements was protecting the injection valve against excessive rotation.
+- **Servo gear:** attached to the circular servo horn supplied with the servo motor. The horn is screwed directly to the 3D-printed gear, and the assembled gear/horn is secured to the servo shaft using the original servo screw.
+- **Valve gear:** includes a hole for an **M3 screw**, used to secure the gear to the injection valve shaft.
+- **Movable support:** allows the gears to be disengaged for calibration and re-engaged after confirming the correct positions.
 
-The manual valve operates over a limited angular range of approximately **90°**. Rotating beyond its mechanical limits could damage the internal mechanism.
-
-To address this, I developed a **movable support that allows the gears to be temporarily disengaged**.
-
-This feature enables the servo and valve positions to be adjusted independently before engaging the gears, ensuring proper alignment without forcing the valve beyond its mechanical limits.
-
-Once the correct positions are established, the gears can be engaged for normal operation.
-
-This mechanism was essential for safe installation and calibration.
+This arrangement provides a simple, adjustable, and compact mechanical transmission.
 
 **3D CAD assembly:**
 
-[CAD rendering of the complete valve automation system]
+<img width="855" height="763" alt="3D CAD assembly" src="https://github.com/user-attachments/assets/b63859d4-aec8-4122-aa2b-738bdb6233a9" />
 
 <br>
 <br>
 
 **Adjustable gear engagement mechanism:**
 
-[Images showing engaged and disengaged gear positions]
+<table>
+  <tr>
+    <td width="33.33%">
+      <img width="100%" alt="Adjustable servo support" src="https://github.com/user-attachments/assets/1c768b50-75ff-43df-9af5-d9857c79bb18" />
+    </td>
+    <td width="33.33%">
+      <img width="100%" alt="Gear engagement mechanism" src="https://github.com/user-attachments/assets/82ac437e-9e28-4f83-854c-1341e68f5968" />
+    </td>
+    <td width="33.33%">
+      <img width="643" height="457" alt="3" src="https://github.com/user-attachments/assets/aebda799-3e77-4060-8503-4174763a3fe0" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="50%">
+      <img width="100%" alt="Gear mounting and fixation" src="https://github.com/user-attachments/assets/4635f24a-be49-456c-aabf-0c74543f351c" />
+    </td>
+    <td width="50%">
+      <img width="100%" alt="Servo and valve gear assembly" src="https://github.com/user-attachments/assets/2c684780-1f4b-4710-b389-f42c193406fb" />
+    </td>
+  </tr>
+</table>
 
 <br>
 <br>
 
 **3D-printed components:**
 
-[Photos of the printed holder, gears, and enclosure]
+<img width="1236" height="786" alt="3D-printed mechanical components" src="https://github.com/user-attachments/assets/529e008f-6343-44ac-9b74-b86b6aa88b84" />
 
-<br>
-<br>
+### Electronics Enclosure
+
+A custom **3D-printed enclosure** was also designed to accommodate the electronic circuit. It includes a **sliding lid** for easy access to the components and an opening for a **5.5 × 2.1 mm DC barrel jack connector**, used to connect the external 12 V power supply.
 
 ### STL Files
 
-The 3D-printable components are available in the repository:
+The printable files for the valve holder, gears, movable servo support, and electronics enclosure are available here:
 
 **[STL Files](STL-files/)**
 
 <br>
 
-## Electronic Circuit and Power Management
+## Electronic Circuit
 
-The electronic system was designed around the compact **ESP8266 ESP-01**, which controls the servo motor and receives the external trigger signal.
+The circuit was designed around the compact **ESP8266 ESP-01**, with a single **12 V / 2 A power supply** and dedicated voltage regulation for the servo and microcontroller.
 
-A single **12 V / 2 A power supply** powers the system through two voltage regulation stages.
+### Power Supply
 
-### Voltage Regulation
+- **LM7805:** regulates 12 V to 5 V for the servo motor.
+- **AMS1117-3.3 regulator module:** converts 5 V to 3.3 V for the ESP-01. The module includes the supporting capacitors required for voltage regulation.
+- **3300 µF / 50 V capacitor:** connected across the 5 V supply to help reduce voltage fluctuations caused by servo operation. This value was used because the capacitor was available; a smaller capacitance may also be suitable.
 
-The circuit uses:
+All circuit stages share a common ground reference.
 
-- **12 V / 2 A external power supply:** main system input.
-- **LM7805:** reduces 12 V to 5 V for the servo motor.
-- **AMS1117-3.3 module:** reduces the regulated 5 V to 3.3 V for the ESP-01.
-- **3300 µF / 50 V capacitor:** connected across the 5 V output to provide additional energy storage and help reduce voltage fluctuations during servo operation.
+### External Trigger Input
 
-The 3300 µF capacitor was selected because it was available during development; a smaller capacitor may also be suitable depending on the servo current requirements and circuit configuration.
+The valve can be automatically controlled by an external laboratory instrument providing an approximately **24 V signal**.
 
-The servo is powered from the dedicated 5 V regulator rather than from the ESP-01, which cannot supply the motor's required current.
+To interface this signal with the ESP8266's 3.3 V GPIO, the input circuit includes:
 
-All control and power stages share a common ground reference.
+- **1N4007 diode:** connected before the voltage divider to protect against accidental reverse-polarity connections.
+- **10 kΩ trimmer potentiometer:** configured as a voltage divider to reduce the external signal to approximately 3 V.
+- **3 V Zener diode:** connected at the GPIO input to provide additional voltage limiting.
 
-### External Trigger Signal Conditioning
+The trimmer allows the input voltage to be adjusted for different external trigger levels.
 
-The automated valve can be controlled by an external laboratory instrument providing an approximately **24 V electrical signal**.
-
-Because the ESP8266 GPIO pins operate at **3.3 V logic levels**, the external voltage cannot be connected directly to the microcontroller.
-
-The input circuit uses:
-
-- **10 kΩ trimmer potentiometer:** adjusted to reduce the external signal to approximately 3 V at the ESP-01 input. The potentiometer can be adjusted if higher or lower voltage is used for triggering.
-- **3 V Zener diode:** connected to the signal input as an additional voltage-limiting.
-
-This arrangement was implemented to interface the external trigger with the ESP-01 while reducing the risk of applying excessive voltage to its GPIO input.
-
-The input circuit must be properly adjusted and verified before connection to the microcontroller. A trimmer and Zener diode alone do not guarantee protection against all input conditions or electrical transients.
+**Important:** The GPIO input must not receive 24 V directly. The conditioned voltage must be verified before connecting the ESP-01. The trimmer, series diode, and Zener provide basic conditioning but do not guarantee protection against every overvoltage or transient condition.
 
 ### Circuit Schematic
 
-[complete electronic circuit schematic]
-
-The schematic include the power supply, LM7805, AMS1117-3.3, filtering capacitor, ESP-01, servo connections, and external trigger conditioning circuit.
-
-**Internal electronics:**
-
-[photo of the assembled circuit and electronics enclosure]
+<img width="982" height="677" alt="image" src="https://github.com/user-attachments/assets/c461ebcb-52a3-470c-b0d7-e7de8cf101ba" />
 
 <br>
+<br>
 
-## ESP8266 Firmware and Web Interface
+**Internal electronics and assembly:**
 
-The system uses an **ESP8266 ESP-01 programmed in Arduino C/C++**, with an integrated HTTP server for configuration and control.
+<table>
+  <tr>
+    <td width="50%">
+      <img width="100%" alt="Electronic circuit assembly" src="https://github.com/user-attachments/assets/8405582c-62b8-40e3-a019-05fbc8dbbae2" />
+    </td>
+    <td width="50%">
+      <img width="100%" alt="Internal electronic components" src="https://github.com/user-attachments/assets/a9a3c43c-f7fe-4966-8b97-21cf4c012f7a" />
+    </td>
+  </tr>
+</table>
 
-The ESP-01 creates its own Wi-Fi access point, allowing the valve to be configured using a smartphone, tablet, or computer without requiring an existing wireless network.
+<br>
+<br>
 
-### Wi-Fi Configuration
+## ESP8266 Programming and Web Interface
 
-| Parameter | Value |
-|---|---|
-| Wi-Fi network (SSID) | `AUTO_VALVE` |
-| Access point IP | `192.168.4.1` |
-| Wi-Fi password | None (open network) |
+The ESP-01 was programmed in **Arduino C/C++** to operate as a Wi-Fi access point with an integrated HTTP server and DNS-based captive portal.
 
-To access the interface:
+The web interface allows the user to:
 
-1. Power on the device.
-2. Connect to the `AUTO_VALVE` Wi-Fi network.
-3. Open a browser and navigate to **http://192.168.4.1**.
-4. Configure the servo positions or test the valve movement.
-
-The firmware also implements a DNS-based captive portal mechanism to help direct connected devices toward the control interface.
-
-### Web Interface Features
-
-The interface was developed using HTML and CSS embedded directly in the ESP8266 firmware.
-
-It allows the operator to:
-
-- Set the servo angle corresponding to the **OPEN** position.
-- Set the servo angle corresponding to the **CLOSE** position.
-- Save both positions in EEPROM.
+- Adjust the **OPEN** and **CLOSE** servo angles (0–180°).
+- Save calibrated positions in EEPROM.
 - Move the servo to either position for testing.
-- Return the system to automatic operation.
-- View the current operating mode.
+- Switch between **Test Mode** and **Automatic Mode**.
+- Configure the valve using a smartphone or computer without an external Wi-Fi network.
 
-The configured positions can be adjusted between **0° and 180°**, although the safe mechanical range must be established according to the valve and gear configuration.
+### Wi-Fi Connection
 
-**Web control interface:**
+| Parameter | Configuration |
+|---|---|
+| Wi-Fi SSID | `AUTO_VALVE` |
+| IP address | `192.168.4.1` |
+| Password | None (open network) |
 
-[screenshot of the ESP8266 web interface]
+Connect to `AUTO_VALVE` and open **http://192.168.4.1** in a browser.
+
+**Web interface:**
+
+<img width="350" alt="ESP8266 web interface" src="https://github.com/user-attachments/assets/dc8b249f-9b3e-4a48-af20-700abbc27a26" />
 
 <br>
 <br>
 
-## Operating Modes
+### Operating Modes
 
-The firmware supports two operating modes.
+**Test Mode:** the operator manually selects the OPEN or CLOSE position through the web interface. The external trigger is temporarily ignored, allowing safe servo calibration and gear alignment.
 
-### Test Mode — Manual Positioning
+**Automatic Mode:** the ESP-01 continuously monitors the external trigger input and moves the valve according to its logic level.
 
-Test mode allows the operator to move the valve through the browser to verify its mechanical alignment.
-
-The available commands are:
-
-- **Move OPEN position:** moves the servo to the stored OPEN angle.
-- **Move CLOSE position:** moves the servo to the stored CLOSE angle.
-
-Selecting either command switches the firmware into test mode, preventing the external trigger from overriding the manually selected position.
-
-This is particularly useful when calibrating the servo and aligning the 3D-printed gears with the valve.
-
-### Automatic Mode — External Trigger
-
-In automatic mode, the ESP-01 continuously monitors the external trigger input.
-
-The valve position depends on the input logic level:
-
-| External input | Servo position |
+| Trigger input | Valve position |
 |---|---|
 | LOW | OPEN |
 | HIGH | CLOSE |
 
-An external instrument can therefore control the valve by changing the state of its electrical output.
+### Firmware and Connections
 
-This allows the injection valve to be integrated into automated analytical procedures without requiring manual operation.
-
-The external trigger voltage is conditioned by the input circuit before reaching the ESP-01.
-
-### Operating Sequence
-
-```text
-             Power ON
-                │
-                ▼
-         ESP-01 initializes
-                │
-                ▼
-     Read saved servo positions
-            from EEPROM
-                │
-                ▼
-      Create Wi-Fi Access Point
-          AUTO_VALVE
-                │
-                ▼
-       Start Web Server
-                │
-                ▼
-        Automatic Mode
-                │
-                ▼
-      Read External Trigger
-                │
-         ┌──────┴──────┐
-         │             │
-        LOW           HIGH
-         │             │
-         ▼             ▼
-     OPEN Position  CLOSE Position
-         │             │
-         └──────┬──────┘
-                │
-                ▼
-       Continue Monitoring
-```
-
-<br>
-
-## Servo Calibration and EEPROM
-
-The valve requires two calibrated servo positions corresponding to its mechanical OPEN and CLOSE states.
-
-The firmware stores these values in the ESP8266's emulated EEPROM:
-
-| EEPROM Address | Stored Parameter |
-|---|---|
-| `0` | OPEN servo angle |
-| `2` | CLOSE servo angle |
-
-The settings are written using `EEPROM.write()` and saved with `EEPROM.commit()`.
-
-This allows the calibrated positions to be restored automatically after a power cycle.
-
-### Calibration Procedure
-
-1. Disconnect the gears using the movable mechanical support.
-2. Connect to the ESP-01 web interface.
-3. Set the desired OPEN and CLOSE servo angles.
-4. Test the servo movement using the browser.
-5. Align the valve and servo positions independently.
-6. Engage the gears after verifying the mechanical alignment.
-7. Test both positions and confirm that the valve does not exceed its approximately 90° operating range.
-8. Return to automatic mode.
-
-**Important:** The firmware controls servo angles but does not independently detect the valve's mechanical end stops. Correct calibration and gear alignment are essential to prevent mechanical damage.
-
-<br>
-
-## Firmware Details
-
-The firmware uses the following Arduino libraries:
-
-```cpp
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
-#include <DNSServer.h>
-#include <EEPROM.h>
-#include <Servo.h>
-```
-
-### GPIO Configuration
-
-| ESP-01 GPIO | Function |
+| ESP-01 Pin | Function |
 |---|---|
 | GPIO2 | Servo control signal |
 | GPIO3 (RX) | External trigger input |
 
-The ESP8266 operates at **3.3 V logic levels**, and the servo is powered separately at 5 V.
-
-The firmware continuously processes DNS requests, handles HTTP connections, and monitors the external trigger when automatic mode is enabled.
-
-### HTTP Routes
-
-| Route | Function |
-|---|---|
-| `/` | Main web interface |
-| `/setdegrees` | Save OPEN and CLOSE angles |
-| `/moveopen` | Move servo to OPEN position |
-| `/moveclose` | Move servo to CLOSE position |
-| `/automatic` | Return to automatic mode |
-
-Unrecognized routes are redirected to the main page.
+The firmware uses the `ESP8266WiFi`, `ESP8266WebServer`, `DNSServer`, `EEPROM`, and `Servo` libraries.
 
 **Source code:** [ESP8266 Valve Controller](firmware/)
 
 <br>
 
-## Operation Demonstration
+## Calibration and Operation
 
-**Complete automated injection valve:**
+To calibrate the valve:
 
-[video of the assembled valve operating]
+1. Disengage the gears using the movable servo support.
+2. Connect to the ESP-01 web interface.
+3. Adjust and save the OPEN and CLOSE servo angles.
+4. Test the servo positions and independently align the valve.
+5. Engage the gears and secure the movable support using the M4 × 20 mm screw and nut.
+6. Verify both positions without exceeding the valve's approximately 60° mechanical range.
+7. Return to Automatic Mode for external trigger operation.
+
+**Important:** The firmware does not detect mechanical end stops. Correct gear alignment and servo calibration are essential to prevent valve damage.
+
+<br>
+
+## Laboratory Application and Demonstration
+
+The automated valve was developed for integration with laboratory analytical instrumentation, allowing the sample injection process to be controlled by an external signal rather than manual operation.
+
+**Automated injection valve integrated with an atomic absorption spectrometer (AAS):**
+
+<img width="1369" height="1004" alt="IMG_5196" src="https://github.com/user-attachments/assets/82f125ca-1a5e-4e22-b324-d2578c92cf8f" />
 
 <br>
 <br>
 
-**Browser-based servo positioning:**
+**Automated valve demonstration:**
 
-[video of the web interface controlling the valve]
+https://github.com/user-attachments/assets/dcbb1c09-ef61-4bb4-bdd8-b5062a94fd51
 
 <br>
 <br>
 
 ## Skills Demonstrated
 
-- **3D CAD Modeling:** mechanical design of the valve holder, gears, adjustable coupling, and electronics enclosure.
-- **3D Printing:** fabrication, assembly, and mechanical fitting of custom components.
-- **Mechanical Automation:** servo-driven gear transmission and valve positioning.
-- **Electronic Circuit Design:** voltage regulation, filtering, signal conditioning, and component integration.
-- **Embedded Programming:** ESP8266 firmware development in Arduino C/C++.
-- **Web Development:** HTML/CSS interface and HTTP server implementation.
-- **Wireless Communication:** ESP8266 Wi-Fi access point and browser-based control.
-- **Non-Volatile Memory:** EEPROM-based storage of calibration parameters.
-- **Laboratory Automation:** external trigger integration and automated sample injection control.
+- **3D Design & Printing:** custom gears, mechanical supports, and electronics enclosure.
+- **Electronics:** voltage regulation, signal conditioning, and circuit assembly.
+- **Embedded Programming:** ESP8266 development using Arduino C/C++.
+- **Web & Wireless Control:** HTML/CSS interface, HTTP server, and Wi-Fi communication.
+- **Laboratory Automation:** servo control, EEPROM calibration, and external trigger integration.
 
 <br>
 
@@ -371,4 +240,4 @@ Unrecognized routes are redirected to the main page.
 **Gilberto Coelho**  
 Electronics & Automation Developer
 
-The complete development of this project was carried out by me, including **3D mechanical modeling, gear and support design, 3D printing, electronic circuit development, assembly, ESP8266 programming, and implementation of the automated control system**.
+I personally developed the complete system, including **3D mechanical modeling, 3D printing, gear design, electronic circuit development, assembly, ESP8266 programming, and automation of the injection valve**.
