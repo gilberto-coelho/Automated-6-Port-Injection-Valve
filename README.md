@@ -187,7 +187,7 @@ Connect to `AUTO_VALVE` and open **http://192.168.4.1** in a browser.
 
 The firmware uses the `ESP8266WiFi`, `ESP8266WebServer`, `DNSServer`, `EEPROM`, and `Servo` libraries.
 
-**Source code:** [ESP8266 Valve Controller](firmware/)
+**Source code:** [ESP8266 Valve Controller](code.ino)
 
 <br>
 
