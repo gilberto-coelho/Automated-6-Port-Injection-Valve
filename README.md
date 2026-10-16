@@ -9,7 +9,7 @@ The complete **3D mechanical design, electronic circuit, assembly, and ESP8266 f
 **Development:** August 2024  
 **Microcontroller:** ESP8266 ESP-01  
 **Programming:** Arduino C/C++, HTML, CSS  
-**Injection Valve:** IDEX 6-Port Manual Injection Valve
+**Injection Valve:** V-451, IDEX Health&Science, USA; Manual Injection Valve
 **Application:** Laboratory instrumentation and sample injection automation
 
 **Complete automated injection valve:**
