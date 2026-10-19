@@ -226,16 +226,6 @@ https://github.com/user-attachments/assets/dcbb1c09-ef61-4bb4-bdd8-b5062a94fd51
 <br>
 <br>
 
-## Skills Demonstrated
-
-- **3D Design & Printing:** custom gears, mechanical supports, and electronics enclosure.
-- **Electronics:** voltage regulation, signal conditioning, and circuit assembly.
-- **Embedded Programming:** ESP8266 development using Arduino C/C++.
-- **Web & Wireless Control:** HTML/CSS interface, HTTP server, and Wi-Fi communication.
-- **Laboratory Automation:** servo control, EEPROM calibration, and external trigger integration.
-
-<br>
-
 ## Author
 
 **Gilberto Coelho**  
